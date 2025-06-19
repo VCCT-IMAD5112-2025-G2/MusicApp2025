@@ -1,22 +1,16 @@
 package za.co.varsitycollege.st10468354.musicapp2025
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity() {
+class DetailedViewScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        
-        val btnAdd = findViewById<Button>(R.id.btnAdd)
-        val btnGo = findViewById<Button>(R.id.btnGo)
-        val btnExit = findViewById<Button>(R.id.btnExit)
-
+        setContentView(R.layout.activity_detailed_view_screen)
 
     }
 }
