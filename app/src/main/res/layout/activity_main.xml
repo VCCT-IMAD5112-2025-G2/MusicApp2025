@@ -37,7 +37,7 @@
         android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/songTitle"
+        android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Song Title:"
@@ -45,7 +45,7 @@
         android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/artistName"
+        android:id="@+id/txtArtist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Artist Name:"
@@ -53,7 +53,7 @@
         android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/songRating"
+        android:id="@+id/txtRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Rating:"
@@ -62,7 +62,7 @@
         android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/songComment"
+        android:id="@+id/txtComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Comment:"

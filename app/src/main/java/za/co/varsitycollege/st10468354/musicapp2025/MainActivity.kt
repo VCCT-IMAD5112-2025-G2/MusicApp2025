@@ -15,10 +15,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
-    private val songTitles = mutableListOf<String>()
-    private val songArtists = mutableListOf<String>()
-    private val songRatings = mutableListOf<Int>()
-    private val songComments = mutableListOf<String>()
+    companion object {
+        val songList = ArrayList<Song>()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,20 +28,39 @@ class MainActivity : AppCompatActivity() {
         val btnAdd = findViewById<Button>(R.id.btnAdd)
         val btnGo = findViewById<Button>(R.id.btnGo)
         val btnExit = findViewById<Button>(R.id.btnExit)
+        val txtTitle = findViewById<EditText>(R.id.txtTitle)
+        val txtArtist = findViewById<EditText>(R.id.txtArtist)
+        val txtRating = findViewById<EditText>(R.id.txtRating)
+        val txtComment = findViewById<EditText>(R.id.txtComment)
 
         // add button to add data
         btnAdd.setOnClickListener {
-            addSongs()
+            val title = txtTitle.text.toString()
+            val artist = txtArtist.text.toString()
+            val rating = txtRating.text.toString().toFloatOrNull()
+            val comment = txtComment.text.toString()
+
+            if (title.isEmpty() || artist.isEmpty() || rating == null || comment.isEmpty()) {
+                Toast.makeText(this,
+                    "Please enter valid song details: ",
+                    Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+
+            val song = Song(title, artist, rating, comment)
+            songList.add(song)
+            Toast.makeText(this, "Song Added!", Toast.LENGTH_SHORT).show()
+
+            txtTitle.text.clear()
+            txtArtist.text.clear()
+            txtRating.text.clear()
+            txtComment.text.clear()
         }
 
         // button navigate to the next screen
         btnGo.setOnClickListener {
-            val intent = Intent(this, DetailedViewScreen::class.java).apply {
-                putStringArrayListExtra("songs", ArrayList(songTitles))
-                putStringArrayListExtra("artists", ArrayList(songArtists))
-                putIntegerArrayListExtra("ratings", ArrayList(songRatings))
-                putStringArrayListExtra("comments", ArrayList(songComments))
-            }
+            val intent = Intent(this, DetailedViewScreen::class.java)
             startActivity(intent)
         }
 
@@ -50,49 +68,5 @@ class MainActivity : AppCompatActivity() {
         btnExit.setOnClickListener {
             finish()
         }
-    }
-
-    // functions to add songs
-    private fun addSongs() {
-        // a dialog view to enter data
-        val dialogView = layoutInflater.inflate(R.layout.activity_main, null)
-
-        // created variables
-        val songTitle = dialogView.findViewById<EditText>(R.id.songTitle)
-        val artistName = dialogView.findViewById<EditText>(R.id.artistName)
-        val songRating = dialogView.findViewById<EditText>(R.id.songRating)
-        val songComment = dialogView.findViewById<EditText>(R.id.songComment)
-
-        // when button clicked, user can enter data
-        AlertDialog.Builder(this)
-             .setTitle("Add to Playlist")
-             .setView(dialogView)
-             .setPositiveButton("Add") { _, _ ->
-                val title = songTitle.text.toString().trim()
-                val artist = artistName.text.toString().trim()
-                val ratingStr = songRating.text.toString().trim()
-                val comment = songComment.text.toString().trim()
-
-                 val rating = ratingStr.toIntOrNull()
-
-                if (songTitles.isEmpty() || songArtists.isEmpty() || songRatings == null) {
-                    Toast.makeText(this,
-                        "Please enter valid song details: ",
-                        Toast.LENGTH_SHORT)
-                        .show()
-                    return@setPositiveButton
-                }
-
-                songTitles.add(title)
-                songArtists.add(artist)
-                 if (rating != null) {
-                     songRatings.add(rating)
-                 }
-                songComments.add(comment)
-
-                Log.d("Add to Playlist", "Added: $title ($artist) x$rating - $comment")
-             }
-            .setNegativeButton("cancel", null)
-            .show()
     }
 }

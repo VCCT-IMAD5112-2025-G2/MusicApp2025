@@ -43,4 +43,18 @@
         android:layout_marginTop="100dp"
         android:backgroundTint="#971E1E"
         android:text="Return to Main Screen" />
+
+    <TextView
+        android:id="@+id/txeAverage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/txeSongs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 </LinearLayout>
