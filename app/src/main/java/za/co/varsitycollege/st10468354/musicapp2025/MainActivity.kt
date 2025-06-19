@@ -26,10 +26,12 @@ class MainActivity : AppCompatActivity() {
         val btnGo = findViewById<Button>(R.id.btnGo)
         val btnExit = findViewById<Button>(R.id.btnExit)
 
+        // add button to add data
         btnAdd.setOnClickListener {
             addSongs()
         }
 
+        // button navigate to the next screen
         btnGo.setOnClickListener {
             val intent = Intent(this, DetailedViewScreen::class.java)
             startActivity(intent)
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("commentSongs", comments)
         }
 
+        // exit button to exit the app
         btnExit.setOnClickListener {
             finish()
         }
@@ -46,6 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     // functions to add songs
     private fun addSongs() {
-
+        Toast.makeText(this, "Please enter valid song titles: ", Toast.LENGTH_LONG).show()
     }
 }

@@ -19,20 +19,24 @@ class DetailedViewScreen : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_detailed_view_screen)
 
+        // created variables
         val btnDisplay = findViewById<Button>(R.id.btnDisplay)
         val btnRating = findViewById<Button>(R.id.btnRating)
         val btnReturn = findViewById<Button>(R.id.btnReturn)
 
+        // display button to display user inputs
         btnDisplay.setOnClickListener {
 
         }
 
+        // rating button to see ratings of the songs
         btnRating.setOnClickListener {
 
         }
 
+        // return to the main screen
         btnReturn.setOnClickListener {
-
+            finish()
         }
     }
 }
