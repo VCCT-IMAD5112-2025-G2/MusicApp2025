@@ -1,0 +1,23 @@
+name: Android Build # github workflow action created
+on: 
+  push:
+    branches: [ "main" ] # brach is main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu' # or 'temurin' if you prefer
+          java-version: 17
+      - name: Make gradlew executable
+        run: chmod +X gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug
