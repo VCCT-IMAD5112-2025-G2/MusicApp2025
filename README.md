@@ -19,7 +19,6 @@
 1. Download the zip file
 2. Open it with Android Studio Code
 3. Run it with Pixel 9 APi emulator
-4. 
 # Github Link: 
 # Github Actions: 
 1. Commits on Github Desktop
